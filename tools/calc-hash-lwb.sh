@@ -36,5 +36,5 @@ done
 
 for i in sdio-div sdio-sa
 do
-  calc_file "firmware" "summit-if513-${i}-firmware-${ver}.tar.bz2" "if513-sdio-firmware"
+  calc_file "firmware" "summit-if513-${i}-firmware-${ver}.tar.bz2" "if513-${i}-firmware"
 done
