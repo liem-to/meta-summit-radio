@@ -18,7 +18,12 @@ S = "${WORKDIR}/summit-backports-${PV}"
 SUMMIT_URI ?= "${SUMMIT_URI_BASE}"
 SUMMIT_URI_summit-internal = "${SUMMIT_URI_BASE}/backports/laird/${PV}"
 
-SRC_URI += "${SUMMIT_URI}/summit-backports-${PV}.tar.bz2;name=summit-backports"
+SRC_URI += "\
+    ${SUMMIT_URI}/summit-backports-${PV}.tar.bz2;name=summit-backports \
+    file://0001-fix-genlmsg_multicast_allns.patch \
+    file://0002-Fixed-UBSAN-out-of-bounds-errors.patch \
+    file://0003-brcmcfmac-Demote-DPC-error-message.patch \
+    "
 
 EXTRA_OEMAKE = "\
     KLIB=${STAGING_KERNEL_DIR} \
