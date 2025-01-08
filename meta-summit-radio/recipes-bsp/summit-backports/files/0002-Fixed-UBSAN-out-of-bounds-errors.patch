@@ -12,8 +12,8 @@ PROD-17632
 
 diff --git a/hostcmd.h b/hostcmd.h
 index 3658e68..ea82596 100644
---- a/hostcmd.h
-+++ b/hostcmd.h
+--- a/drivers/net/wireless/summit/lrdmwl/hostcmd.h
++++ b/drivers/net/wireless/summit/lrdmwl/hostcmd.h
 @@ -1168,17 +1168,17 @@ struct hostcmd_cmd_quiet_mode {
  
  struct hostcmd_cmd_dump_otp_data {
@@ -37,8 +37,8 @@ index 3658e68..ea82596 100644
  struct hostcmd_cmd_monitor_mode {
 diff --git a/main.c b/main.c
 index 18abd35..f0f4aa1 100644
---- a/main.c
-+++ b/main.c
+--- a/drivers/net/wireless/summit/lrdmwl/main.c
++++ b/drivers/net/wireless/summit/lrdmwl/main.c
 @@ -414,7 +414,7 @@ typedef struct ww_pwr_entry
  	u8     cc[2];
  	__le16 rc;
@@ -50,8 +50,8 @@ index 18abd35..f0f4aa1 100644
  #pragma pack(pop)
 diff --git a/sdio.h b/sdio.h
 index c32e927..ac83f2a 100644
---- a/sdio.h
-+++ b/sdio.h
+--- a/drivers/net/wireless/summit/lrdmwl/sdio.h
++++ b/drivers/net/wireless/summit/lrdmwl/sdio.h
 @@ -394,7 +394,7 @@ struct mwifiex_sdio_mpa_rx {
  
  struct mwl_host_event_mac_t {
