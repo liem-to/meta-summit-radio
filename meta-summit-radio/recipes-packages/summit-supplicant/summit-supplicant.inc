@@ -63,12 +63,18 @@ do_compile:append () {
 
 EXTRA_OEMAKE = "'BINDIR=${sbindir}'"
 
+SUPP_DBUS_P2P_ENABLE ?= "0"
+
 do_install () {
     install -m 0755 -D -t "${D}${sbindir}" wpa_cli sdcsupp
     install -m 0755 -D -t "${D}${bindir}" wpa_passphrase
 
     if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
         install -m 0644 -D -t "${D}${systemd_unitdir}/system" systemd/*.service
+    fi
+    if [ "${SUPP_DBUS_P2P_ENABLE}" = "0" ]; then
+        mkdir -p "${D}${sysconfdir}/wpa_supplicant"
+        echo "p2p_disabled=1" > "${D}${sysconfdir}/wpa_supplicant/dbus_overlay.conf"
     fi
 }
 
