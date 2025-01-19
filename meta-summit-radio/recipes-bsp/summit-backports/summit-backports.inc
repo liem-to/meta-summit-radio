@@ -23,6 +23,7 @@ SRC_URI += "\
     file://0001-fix-genlmsg_multicast_allns.patch \
     file://0002-Fixed-UBSAN-out-of-bounds-errors.patch \
     file://0003-brcmcfmac-Demote-DPC-error-message.patch \
+    file://0004-Fix-stop-shutdown-mode-entry.patch \
     "
 
 EXTRA_OEMAKE = "\
