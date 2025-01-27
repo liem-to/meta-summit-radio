@@ -6,7 +6,7 @@ set -e
 
 [ -z "${ver}" ] && { echo "Usage: ${0} <version>"; exit 1; }
 
-wget="/usr/bin/wget -T4 -t1 -P ${tmpdir:-.}"
+wget="/usr/bin/wget -T4 -t1"
 
 [ -z "${RFPROS_FILESHARE_USER}" ] || \
 	wget="${wget} --user=${RFPROS_FILESHARE_USER} --password=${RFPROS_FILESHARE_PASS} --auth-no-challenge"
