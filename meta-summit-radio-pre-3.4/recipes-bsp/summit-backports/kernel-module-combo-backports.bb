@@ -1,8 +1,8 @@
-SUMMARY = "Summit Backports for TI351"
+SUMMARY = "Summit Backports Multi radio"
 
-BACKPORTS_CONFIG = "${@bb.utils.contains('DISTRO_FEATURES','bluetooth','sona_ti','sona_ti_nbt',d)}"
+BACKPORTS_CONFIG = "${@bb.utils.contains('DISTRO_FEATURES','bluetooth','bdimx8','bdimx8_nbt',d)}"
 
-RCONFLICTS_${PN} = " \
+RCONFLICTS:${PN} = " \
         kernel-module-60-backports \
         kernel-module-lwb-if-backports \
         kernel-module-msd45-backports \
@@ -12,4 +12,4 @@ RCONFLICTS_${PN} = " \
         "
 
 require summit-backports.inc
-require radio-stack-ti-version.inc
+require radio-stack-lwb-version.inc
