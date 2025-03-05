@@ -23,6 +23,16 @@ S = "${WORKDIR}"
 ALLOW_EMPTY:${PN}-dev = "0"
 ALLOW_EMPTY:${PN}-dbg = "0"
 
+# Firmware files are generally not ran on the CPU, so they can be
+# allarch despite being architecture specific
+INSANE_SKIP = "arch"
+
+# Don't warn about already stripped files
+INSANE_SKIP:${PN} = "already-stripped"
+
+# No need to put firmware into the sysroot
+SYSROOT_DIRS_IGNORE += "${nonarch_base_libdir}/firmware"
+
 do_install() {
 	install -d  "${D}${nonarch_base_libdir}"
 	cp -r "${S}/lib/"* "${D}${nonarch_base_libdir}"
