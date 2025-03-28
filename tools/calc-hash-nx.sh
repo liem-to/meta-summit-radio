@@ -13,3 +13,4 @@ calc_file "summit_supplicant/laird" "summit_supplicant-src-${ver}.tar.gz" "summi
 calc_file "lrd-network-manager/src" "summit-network-manager-src-${ver}.tar.xz" "summit-network-manager"
 calc_file "backports/laird" "summit-backports-${ver}.tar.bz2" "summit-backports"
 calc_file "firmware" "summit-nx61x-firmware-${ver}.tar.bz2" "nx61x-firmware"
+calc_file "firmware" "summit-nx61x-1218-firmware-${ver}.tar.bz2" "nx61x-1218-firmware"

@@ -60,6 +60,7 @@ II. Misc
 This layer supports the following modules:
     - Summit 60 series radio drivers and firmware
     - Sona IF573 radio drivers and firmware
+    - Sona NX611 radio drivers and firmware
     - Sterling LWB/LWB5/LWB+/LWB5+ radio drivers and firmware
     - Summit WPA supplicant
     - Summit NetworkManager
