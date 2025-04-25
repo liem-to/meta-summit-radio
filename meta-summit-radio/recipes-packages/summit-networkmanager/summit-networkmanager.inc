@@ -34,7 +34,7 @@ S = "${WORKDIR}/summit-network-manager-${PV}"
 # ['auto', 'symlink', 'file', 'netconfig', 'resolvconf']
 NETWORKMANAGER_DNS_RC_MANAGER_DEFAULT ??= "auto"
 
-# ['dhcpcanon', 'dhclient', 'dhcpcd', 'internal', 'nettools']
+# ['dhcpcd', 'internal', 'nettools']
 NETWORKMANAGER_DHCP_DEFAULT ??= "internal"
 
 EXTRA_OEMESON = "\
@@ -46,7 +46,6 @@ EXTRA_OEMESON = "\
     -Dqt=false \
     -Dconfig_dns_rc_manager_default=${NETWORKMANAGER_DNS_RC_MANAGER_DEFAULT} \
     -Dconfig_dhcp_default=${NETWORKMANAGER_DHCP_DEFAULT} \
-    -Ddhcpcanon=false \
     -Dcrypto=openssl \
 "
 
@@ -97,7 +96,6 @@ PACKAGECONFIG[audit] = "-Dlibaudit=yes,-Dlibaudit=no"
 PACKAGECONFIG[selinux] = "-Dselinux=true,-Dselinux=false,libselinux"
 PACKAGECONFIG[vala] = "-Dvapi=true,-Dvapi=false"
 PACKAGECONFIG[dhcpcd] = "-Ddhcpcd=yes,-Ddhcpcd=no,,dhcpcd"
-PACKAGECONFIG[dhclient] = "-Ddhclient=yes,-Ddhclient=no,,dhcp"
 PACKAGECONFIG[concheck] = "-Dconcheck=true,-Dconcheck=false,curl,"
 
 PACKAGES =+ " \

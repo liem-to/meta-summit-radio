@@ -16,7 +16,7 @@ DEPENDS = " \
     openssl \
 "
 
-inherit autotools gettext update-rc.d systemd bash-completion gobject-introspection gtk-doc update-alternatives
+inherit meson pkgconfig gettext update-rc.d systemd gobject-introspection gtk-doc update-alternatives
 
 SUMMIT_URI ?= "${SUMMIT_URI_BASE}"
 SUMMIT_URI_summit-internal = "${SUMMIT_URI_BASE}/lrd-network-manager/src/${PV}"
@@ -32,22 +32,19 @@ S = "${WORKDIR}/summit-network-manager-${PV}"
 # ['auto', 'symlink', 'file', 'netconfig', 'resolvconf']
 NETWORKMANAGER_DNS_RC_MANAGER_DEFAULT ??= "auto"
 
-# ['dhcpcanon', 'dhclient', 'dhcpcd', 'internal', 'nettools']
+# ['dhcpcd', 'internal', 'nettools']
 NETWORKMANAGER_DHCP_DEFAULT ??= "internal"
 
-EXTRA_OECONF = " \
-    --disable-ifcfg-rh \
-    --disable-more-warnings \
-    --with-iptables=${sbindir}/iptables \
-    --disable-tests \
-    --with-nmtui=yes \
-    --with-udev-dir=${nonarch_base_libdir}/udev \
-    --without-libpsl \
-    --disable-qt \
-    --with-config-dns-rc-manager-default=${NETWORKMANAGER_DNS_RC_MANAGER_DEFAULT} \
-    --with-config-dhcp-default=${NETWORKMANAGER_DHCP_DEFAULT} \
-    --without-dhcpcanon \
-    --with-crypto=openssl \
+EXTRA_OEMESON = "\
+    -Difcfg_rh=false \
+    -Dtests=no \
+    -Dnmtui=true \
+    -Dudev_dir=${nonarch_base_libdir}/udev \
+    -Dlibpsl=false \
+    -Dqt=false \
+    -Dconfig_dns_rc_manager_default=${NETWORKMANAGER_DNS_RC_MANAGER_DEFAULT} \
+    -Dconfig_dhcp_default=${NETWORKMANAGER_DHCP_DEFAULT} \
+    -Dcrypto=openssl \
 "
 
 # stolen from https://github.com/void-linux/void-packages/blob/master/srcpkgs/NetworkManager/template
@@ -58,7 +55,7 @@ CFLAGS_append_libc-musl = " \
 "
 
 do_compile_prepend() {
-    export GIR_EXTRA_LIBS_PATH="${B}/src/libnm-client-impl/.libs"
+    export GI_TYPELIB_PATH="${B}}/src/libnm-client-impl${GI_TYPELIB_PATH:+:$GI_TYPELIB_PATH}"
 }
 
 PACKAGECONFIG ??= "libedit dnsmasq nmcli \
@@ -71,31 +68,30 @@ PACKAGECONFIG ??= "libedit dnsmasq nmcli \
 "
 
 PACKAGECONFIG[systemd] = "\
-    --with-systemdsystemunitdir=${systemd_unitdir}/system --with-session-tracking=systemd, \
-    --without-systemdsystemunitdir --without-systemd-journal --without-session-tracking\
+    -Dsystemdsystemunitdir=${systemd_unitdir}/system -Dsession_tracking=systemd,\
+    -Dsystemdsystemunitdir=no -Dsystemd_journal=false -Dsession_tracking=no\
 "
-PACKAGECONFIG[polkit] = "--enable-polkit,--disable-polkit,polkit"
-PACKAGECONFIG[bluez5] = "--enable-bluez5-dun,--disable-bluez5-dun,bluez5"
+PACKAGECONFIG[polkit] = "-Dpolkit=true,-Dpolkit=false,polkit"
+PACKAGECONFIG[bluez5] = "-Dbluez5_dun=true,-Dbluez5_dun=false,bluez5"
 # consolekit is not picked by shlibs, so add it to RDEPENDS too
-PACKAGECONFIG[consolekit] = "--with-session-tracking=consolekit,,consolekit,consolekit"
-PACKAGECONFIG[modemmanager] = "--with-modem-manager-1=yes,--without-modem-manager-1,modemmanager mobile-broadband-provider-info"
-PACKAGECONFIG[ofono] = "--with-ofono,--without-ofono,ofono"
-PACKAGECONFIG[ppp] = "--enable-ppp,--disable-ppp,ppp,ppp"
-PACKAGECONFIG[dnsmasq] = "--with-dnsmasq=${bindir}/dnsmasq,,,dnsmasq"
-PACKAGECONFIG[resolvconf] = "--with-resolvconf=${base_sbindir}/resolvconf,,,resolvconf"
-PACKAGECONFIG[wifi] = "--with-wext=no --enable-wifi=yes,--with-wext=no --enable-wifi=no,wpa-supplicant"
-PACKAGECONFIG[ifupdown] = "--enable-ifupdown,--disable-ifupdown"
-PACKAGECONFIG[cloud-setup] = "--with-nm-cloud-setup=yes,--with-nm-cloud-setup=no"
-PACKAGECONFIG[nmcli] = "--with-nmcli=yes,--with-nmcli=no,readline"
-PACKAGECONFIG[readline] = "--with-readline=libreadline,,readline"
-PACKAGECONFIG[libedit] = "--with-readline=libedit,,libedit"
-PACKAGECONFIG[ovs] = "--enable-ovs,--disable-ovs,jansson"
-PACKAGECONFIG[audit] = "--with-libaudit,--without-libaudit,audit"
-PACKAGECONFIG[selinux] = "--with-selinux,--without-selinux,libselinux"
-PACKAGECONFIG[vala] = "--enable-vala,--disable-vala"
-PACKAGECONFIG[dhcpcd] = "-Ddhcpcd=yes,--with-dhcpcd=no,,dhcpcd"
-PACKAGECONFIG[dhclient] = "-Ddhclient=yes,--with-dhclient=no,,dhcp"
-PACKAGECONFIG[concheck] = "--enable-concheck,--disable-concheck,curl,"
+PACKAGECONFIG[consolekit] = "-Dsession_tracking_consolekit=true,-Dsession_tracking_consolekit=false,consolekit,consolekit"
+PACKAGECONFIG[modemmanager] = "-Dmodem_manager=true,-Dmodem_manager=false,modemmanager mobile-broadband-provider-info"
+PACKAGECONFIG[ofono] = "-Dofono=true,-Dofono=false,ofono"
+PACKAGECONFIG[ppp] = "-Dppp=true -Dpppd=/usr/sbin/pppd,-Dppp=false,ppp,ppp"
+PACKAGECONFIG[dnsmasq] = "-Ddnsmasq=${bindir}/dnsmasq,,,dnsmasq"
+PACKAGECONFIG[resolvconf] = "-Dresolvconf=${base_sbindir}/resolvconf,-Dresolvconf=no,,resolvconf"
+PACKAGECONFIG[wifi] = "-Dwext=false -Dwifi=true,-Dwext=false -Dwifi=false"
+PACKAGECONFIG[ifupdown] = "-Difupdown=true,-Difupdown=false"
+PACKAGECONFIG[cloud-setup] = "-Dnm_cloud_setup=true,-Dnm_cloud_setup=false"
+PACKAGECONFIG[nmcli] = "-Dnmcli=true,-Dnmcli=false"
+PACKAGECONFIG[readline] = "-Dreadline=libreadline,,readline"
+PACKAGECONFIG[libedit] = "-Dreadline=libedit,,libedit"
+PACKAGECONFIG[ovs] = "-Dovs=true,-Dovs=false,jansson"
+PACKAGECONFIG[audit] = "-Dlibaudit=yes,-Dlibaudit=no"
+PACKAGECONFIG[selinux] = "-Dselinux=true,-Dselinux=false,libselinux"
+PACKAGECONFIG[vala] = "-Dvapi=true,-Dvapi=false"
+PACKAGECONFIG[dhcpcd] = "-Ddhcpcd=yes,-Ddhcpcd=no,,dhcpcd"
+PACKAGECONFIG[concheck] = "-Dconcheck=true,-Dconcheck=false,curl,"
 
 PACKAGES =+ " \
     ${PN}-adsl \
