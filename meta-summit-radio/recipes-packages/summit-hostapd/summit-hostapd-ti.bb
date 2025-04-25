@@ -1,3 +1,4 @@
 SUMMARY = "Summit hostapd for TI"
 
-require summit-hostapd.inc radio-stack-ti-version.inc
+require summit-hostapd.inc
+require radio-stack-ti-version.inc

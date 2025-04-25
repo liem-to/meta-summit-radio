@@ -1,3 +1,4 @@
 SUMMARY = "Summit Network Manager for TI"
 
-require summit-networkmanager.inc radio-stack-ti-version.inc
+require summit-networkmanager.inc
+require radio-stack-ti-version.inc

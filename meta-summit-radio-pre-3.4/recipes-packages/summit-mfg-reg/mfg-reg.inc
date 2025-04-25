@@ -24,7 +24,7 @@ SUMMIT_URI_summit-internal = "${SUMMIT_URI_BASE}/${REG_NAME}/laird/${PV}"
 SRC_URI = "${SUMMIT_URI}/${REG_FULL_NAME}.tar.bz2;subdir=src;name=${REG_NAME}${REG_ARCH}"
 
 S = "${WORKDIR}/src"
-B = "${WORKDIR}/build"
+#B = "${WORKDIR}/build"
 
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
@@ -41,13 +41,13 @@ RDEPENDS_${PN} += " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'bluez5', '', d)} \
 	"
 
-do_unpack_append() {
+python do_unpack:append() {
     import tarfile, os
     mfgname = d.expand(d.getVar("REG_FULL_NAME", True))
     s = d.expand(d.getVar("S", True))
-    b = d.expand(d.getVar("B", True))
+    #b = d.expand(d.getVar("B", True))
     os.chdir(s)
     os.system("./" + mfgname + ".sh tar")
     tf = tarfile.open(s + "/" + mfgname + ".tar.bz2")
-    tf.extractall(b)
+    tf.extractall(s)
 }

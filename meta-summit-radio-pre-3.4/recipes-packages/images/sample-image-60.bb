@@ -18,7 +18,6 @@ IMAGE_FEATURES_remove = "\
 
 IMAGE_INSTALL += "\
 	iproute2 \
-	rng-tools \
 	ca-certificates \
 	tzdata \
 	htop \

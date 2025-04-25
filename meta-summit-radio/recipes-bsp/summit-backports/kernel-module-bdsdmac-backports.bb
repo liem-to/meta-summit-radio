@@ -11,4 +11,5 @@ RCONFLICTS:${PN} = " \
         kernel-module-nx-backports \
         "
 
-require summit-backports.inc radio-stack-bdsdmac-version.inc
+require summit-backports.inc
+require radio-stack-bdsdmac-version.inc

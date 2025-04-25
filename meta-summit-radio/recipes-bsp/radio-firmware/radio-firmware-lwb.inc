@@ -1,4 +1,5 @@
-require radio-firmware.inc radio-stack-lwb-version.inc
+require radio-firmware.inc
+require radio-stack-lwb-version.inc
 
 LICENSE += "& Cypress"
 NO_GENERIC_LICENSE[Cypress] = "LICENSE.cypress"

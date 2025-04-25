@@ -1,4 +1,5 @@
-require mfg-reg.inc radio-stack-ti-version.inc
+require mfg-reg.inc
+require radio-stack-ti-version.inc
 
 do_install() {
 	install -D -t "${D}${bindir}" -m 775 "${B}/lru"

@@ -11,4 +11,5 @@ RCONFLICTS:${PN} = " \
         kernel-module-bdsdmac-backports \
         "
 
-require summit-backports.inc radio-stack-ti-version.inc
+require summit-backports.inc
+require radio-stack-ti-version.inc

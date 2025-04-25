@@ -12,8 +12,8 @@ SONA_NX_PKG_PREFIX ?= ""
 do_install:append() {
     install -d  "${D}${sysconfdir}/modprobe.d"
     if [ -n "${SONA_NX_PKG_PREFIX}" ]; then
-        echo "options moal mod_para=nxp/${SONA_NX_PKG_PREFIX}_wifi_prod_params.conf" > "${D}${sysconfdir}/modprobe.d/moal.conf"
+        echo "options moal mod_para=nxp/${SONA_NX_PKG_PREFIX}_wifi_mod_params.conf" > "${D}${sysconfdir}/modprobe.d/moal.conf"
     else 
-        echo "options moal mod_para=nxp/wifi_prod_params.conf" > "${D}${sysconfdir}/modprobe.d/moal.conf"
+        echo "options moal mod_para=nxp/wifi_mod_params.conf" > "${D}${sysconfdir}/modprobe.d/moal.conf"
     fi
 }

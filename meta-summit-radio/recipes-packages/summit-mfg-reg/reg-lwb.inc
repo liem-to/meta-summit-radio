@@ -1,4 +1,5 @@
-require mfg-reg.inc radio-stack-lwb-version.inc
+require mfg-reg.inc
+require radio-stack-lwb-version.inc
 
 LIC_FILES_CHKSUM += "file://FOSS_README.txt;md5=02c65bdd6b6f7dac25fea2a4a2d18c51"
 
