@@ -7,7 +7,9 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
 
 PV = "${RADIO_VERSION}"
 
+# coreutils-native needed to support 'printenv' on kirkstone and below
 DEPENDS = " \
+    coreutils-native \
     libnl \
     udev \
     util-linux \
@@ -66,6 +68,9 @@ PACKAGECONFIG ??= "libedit dnsmasq nmcli \
     ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux audit', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES','3g','modemmanager','',d)} \
 "
+
+inherit ${@bb.utils.contains('PACKAGECONFIG', 'nmcli', 'bash-completion', '', d)}
+inherit ${@bb.utils.contains('PACKAGECONFIG', 'vala', 'vala', '', d)}
 
 PACKAGECONFIG[systemd] = "\
     -Dsystemdsystemunitdir=${systemd_unitdir}/system -Dsession_tracking=systemd,\

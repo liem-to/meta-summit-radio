@@ -41,7 +41,7 @@ RDEPENDS_${PN} += " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'bluez5', '', d)} \
 	"
 
-python do_unpack:append() {
+python do_unpack_append() {
     import tarfile, os
     mfgname = d.expand(d.getVar("REG_FULL_NAME", True))
     s = d.expand(d.getVar("S", True))
