@@ -10,13 +10,14 @@ export tmpdir
 for i in 60 lwb msd mt nx ti bdsdmac
 do
   "${dir}/calc-hash-${i}.sh" "${1}" &
+  pids="${pids} $!"
 done
 
-wait
-
-exit_code=$?
+success=true
+for i in ${pids}; do
+  wait "${i}" || success=false
+done
 
 rm -rf "${tmpdir}"
 
-[ ${exit_code} -eq 0 ] || exit 1
-
+${success} || exit 1
