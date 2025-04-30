@@ -1,4 +1,4 @@
-SUMMARY = "Summit Wi-Fi LWB & LWB5 Manufacturing tools"
+SUMMARY = "Summit Wi-Fi LWB Manufacturing tools"
 
 REG_NAME = "regCypress"
 

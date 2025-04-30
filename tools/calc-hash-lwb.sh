@@ -14,7 +14,6 @@ calc_file "lrd-network-manager/src" "summit-network-manager-src-${ver}.tar.xz" "
 calc_file "backports/laird" "summit-backports-${ver}.tar.bz2" "summit-backports"
 calc_file "firmware" "summit-lwbplus-firmware-${ver}.tar.bz2" "lwbplus-firmware"
 calc_file "firmware" "summit-lwb-firmware-${ver}.tar.bz2" "lwb-firmware"
-calc_file "firmware" "summit-lwb5-firmware-${ver}.tar.bz2" "lwb5-firmware"
 
 for i in sdio-div sdio-sa sdio-sa-m2 usb-div usb-sa usb-sa-m2
 do
