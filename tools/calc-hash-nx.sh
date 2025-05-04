@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 dir=$(dirname "${0}")
 ver=${1}
@@ -9,8 +9,12 @@ file="radio-stack-nx-hashes.inc"
 # shellcheck source=/dev/null
 . "${dir}/calc-common.sh"
 
-calc_file "summit_supplicant/laird" "summit_supplicant-src-${ver}.tar.gz" "summit-supplicant-src"
-calc_file "lrd-network-manager/src" "summit-network-manager-src-${ver}.tar.xz" "summit-network-manager"
-calc_file "backports/laird" "summit-backports-${ver}.tar.bz2" "summit-backports"
-calc_file "firmware" "summit-nx61x-firmware-${ver}.tar.bz2" "nx61x-firmware"
-calc_file "firmware" "summit-nx61x-1218-firmware-${ver}.tar.bz2" "nx61x-1218-firmware"
+files="\
+  summit_supplicant/laird/${ver}/summit_supplicant-src-${ver}.tar.gz \
+  backports/laird/${ver}/summit-backports-${ver}.tar.bz2 \
+  firmware/${ver}/summit-nx61x-firmware-${ver}.tar.bz2 \
+  firmware/${ver}/summit-nx61x-1218-firmware-${ver}.tar.bz2 \
+"
+
+calc_hash sha256sum "${files}"
+calc_hash md5sum "${files}"

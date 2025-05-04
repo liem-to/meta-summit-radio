@@ -1,18 +1,21 @@
-#! /bin/sh
+#! /bin/bash
+
+set -e -o pipefail
 
 : "${file:-?}"
 
 [ -z "${ver}" ] && { echo "Usage: ${0} <version>"; exit 1; }
 
 prefix="/var/www/html/builds/linux"
-cmd="ssh -o ControlMaster=auto fileshare@files.devops.rfpros.com"
+cmd="ssh -o ControlMaster=auto -o ControlPersist=5s -o ControlPath=/tmp/ssh-fileshare fileshare@files.devops.rfpros.com"
 
-calc_file () {
-  md5="$(${cmd} "md5sum ${prefix}/${1}/${ver}/${2}")"
-  sha256="$(${cmd} "sha256sum ${prefix}/${1}/${ver}/${2}")"
-
-  echo "SRC_URI[${3}.md5sum] = \"${md5%% *}\""
-  echo "SRC_URI[${3}.sha256sum] = \"${sha256%% *}\""
-} >> "${file}"
+calc_hash() {
+  ${cmd} "set -e; cd ${prefix} && ${1} ${2}" | \
+    sed -r \
+      -e "s/([0-9a-f]+)  .*\/(.*)-[0-9.]+\.tar.*/SRC_URI[\2.${1}] = \"\1\"/" \
+      -e 's/_/-/g' \
+      -e 's/summit-(.*)-firmware/\1-firmware/g' \
+       >> "${file}"
+}
 
 printf 'RADIO_VERSION = "%s"\n\n' "${ver}" > "${file}"
