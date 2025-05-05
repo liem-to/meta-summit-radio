@@ -2,6 +2,8 @@
 
 set -e
 
+[ -z "${1}" ] && { echo "Usage: ${0} <version>"; exit 1; } 
+
 dir=$(dirname "${0}")
 
 for i in 60 lwb msd mt nx ti bdsdmac
