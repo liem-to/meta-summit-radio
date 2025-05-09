@@ -16,5 +16,10 @@ files="\
   firmware/${ver}/summit-nx61x-1218-firmware-${ver}.tar.bz2 \
 "
 
+for i in x86 x86_64 arm-eabi arm-eabihf aarch64 powerpc64-e5500
+do
+  files="${files} mfg611/laird/${ver}/mfg611-${i}-${ver}.tar.bz2"
+done
+
 calc_hash sha256sum "${files}"
 calc_hash md5sum "${files}"
