@@ -12,6 +12,7 @@ file="radio-stack-nx-hashes.inc"
 files="\
   summit_supplicant/laird/${ver}/summit_supplicant-src-${ver}.tar.gz \
   backports/laird/${ver}/summit-backports-${ver}.tar.bz2 \
+  lrd-network-manager/src/${ver}/summit-network-manager-src-${ver}.tar.xz \
   firmware/${ver}/summit-nx61x-firmware-${ver}.tar.bz2 \
   firmware/${ver}/summit-nx61x-1218-firmware-${ver}.tar.bz2 \
 "
