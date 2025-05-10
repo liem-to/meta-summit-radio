@@ -6,8 +6,6 @@ LIC_FILES_CHKSUM = "file://LICENSE.ezurio;md5=fd3dd0630b215465b6f50540642d5b93"
 
 PV = "${RADIO_VERSION}"
 
-BB_STRICT_CHECKSUM = "ignore"
-
 HFP = "${@bb.utils.contains('TUNE_FEATURES', 'callconvention-hard', 'eabihf', 'eabi', d)}"
 
 REG_ARCH:x86 = "-x86"
@@ -50,4 +48,15 @@ python do_unpack:append() {
     os.system("./" + mfgname + ".sh tar")
     tf = tarfile.open(s + "/" + mfgname + ".tar.bz2")
     tf.extractall(s)
+}
+
+INSTALL_TOOLS = "lru_* lmu_* \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'btlru_*', '', d)}"
+
+do_install() {
+    for i in ${INSTALL_TOOLS}; do
+        if [ -f "${B}/${i}" ]; then
+            install -D -m 755 -t "${D}${bindir}" "${B}/${i}"
+        fi
+    done
 }

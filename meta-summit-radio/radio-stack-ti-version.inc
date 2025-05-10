@@ -1,5 +1,3 @@
-BB_STRICT_CHECKSUM:summit-internal = "ignore"
-
 PREMIRRORS:summit-internal = ""
 MIRRORS:summit-internal = ""
 

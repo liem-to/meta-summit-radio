@@ -1,4 +1,11 @@
 SUMMARY = "Summit Wi-Fi 60 Manufacturing tools"
 
-require mfg60n.inc
+REG_NAME = "mfg60n"
+
+require mfg-reg.inc
 require radio-stack-60-version.inc
+
+do_install:append() {
+    install -D -m 644 -t "${D}${nonarch_base_libdir}/firmware/lrdmwl" \
+        "${B}/88W8997_mfg_"*
+}
