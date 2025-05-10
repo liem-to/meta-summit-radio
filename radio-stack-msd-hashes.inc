@@ -1,6 +1,6 @@
 RADIO_VERSION = "13.0.0.20"
 
-SRC_URI[summit-supplicant-src.sha256sum] = "41367492beede39551dfecd7d873273f97a6d29b741b526dc0631e223fc64abb"
+SRC_URI[summit-supplicant.sha256sum] = "41367492beede39551dfecd7d873273f97a6d29b741b526dc0631e223fc64abb"
 SRC_URI[summit-backports.sha256sum] = "8ec459fb8d3d47fc7e622ccbf080c0a479e654a04eb7f01afec873bab886f736"
 SRC_URI[ath6k-6003-firmware.sha256sum] = "8c5804a43eb09122a374a1bac84170da808e7e9e5afd63bd2b6527d79a6c188b"
 SRC_URI[ath6k-6004-firmware.sha256sum] = "1c41a42489c43ed29f400862725a13c87e22314e78e6daac094308b8b3313381"
@@ -10,7 +10,7 @@ SRC_URI[reg50n-arm-eabi.sha256sum] = "ff92fe6ae33bc4bf47bf9ea36ae32d42100c9d1c60
 SRC_URI[summit-supplicant-libs-legacy-arm-eabihf.sha256sum] = "11b3e00362bd04aeec90b0c13fc175d9b7dd0ba78a87f37d9d672f0f66a50f72"
 SRC_URI[reg45n-arm-eabihf.sha256sum] = "b9ed0cda538bc7c19502730b666702b8053e7f61187b593cf26818ad20ead688"
 SRC_URI[reg50n-arm-eabihf.sha256sum] = "fb730b074d2b41b1e07beade79c98460b0e6cf70d9709826492d3bf8a0956534"
-SRC_URI[summit-supplicant-src.md5sum] = "8e8efda88b025e68dc70552ab5d7e185"
+SRC_URI[summit-supplicant.md5sum] = "8e8efda88b025e68dc70552ab5d7e185"
 SRC_URI[summit-backports.md5sum] = "58a13f1c2352c14c90b9f41e7107dbf3"
 SRC_URI[ath6k-6003-firmware.md5sum] = "9d070b2225090ab73fc035af81d8ef25"
 SRC_URI[ath6k-6004-firmware.md5sum] = "ecfd393261bcada974b64e24f12cf633"
