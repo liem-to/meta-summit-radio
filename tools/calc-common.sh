@@ -12,9 +12,9 @@ cmd="ssh -o ControlMaster=auto -o ControlPersist=5s -o ControlPath=/tmp/ssh-file
 calc_hash() {
   ${cmd} "set -e; cd ${prefix} && ${1} ${2}" | \
     sed -r \
-      -e "s/([0-9a-f]+)  .*\/(.*)-[0-9.]+\.tar.*/SRC_URI[\2.${1}] = \"\1\"/" \
       -e 's/_/-/g' \
       -e 's/summit-(.*)-firmware/\1-firmware/g' \
+      -e "s/([0-9a-f]+)  .*\/(.*)-[0-9.]+\.tar.*/SRC_URI[\2.${1}] = \"\1\"/" \
        >> "${file}"
 }
 
