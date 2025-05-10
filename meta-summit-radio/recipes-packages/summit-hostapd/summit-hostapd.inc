@@ -11,7 +11,7 @@ SUMMIT_URI ?= "${SUMMIT_URI_BASE}"
 SUMMIT_URI:summit-internal = "${SUMMIT_URI_BASE}/summit_supplicant/laird/${PV}"
 
 SRC_URI = " \
-    ${SUMMIT_URI}/summit_supplicant-src-${PV}.tar.gz;name=summit-supplicant-src \
+    ${SUMMIT_URI}/summit_supplicant-src-${PV}.tar.gz;name=summit-supplicant \
     file://init \
     file://hostapd.service \
 "
