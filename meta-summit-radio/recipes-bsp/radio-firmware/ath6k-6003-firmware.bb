@@ -1,9 +1,12 @@
 SUMMARY = "Summit MSD45 Firmware SDIO-UART"
 
 require radio-firmware.inc
+require radio-stack-msd-version.inc
 
 LICENSE += "& Atheros"
 NO_GENERIC_LICENSE[Atheros] = "LICENSE.atheros"
 LIC_FILES_CHKSUM += "file://LICENSE.atheros;md5=30a14c7823beedac9fa39c64fdd01a13"
 
-require radio-stack-msd-version.inc
+RPROVIDES:${PN}  += "wireless-regdb-static"
+RREPLACES:${PN}  += "wireless-regdb-static"
+RCONFLICTS:${PN} += "wireless-regdb-static"
