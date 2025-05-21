@@ -3,7 +3,7 @@ SUMMARY = "Summit Wi-Fi LWB Manufacturing tools"
 REG_NAME = "regCypress"
 
 require mfg-reg.inc
-require radio-stack-lwb-version.inc
+require radio-stack-version.inc
 
 LICENSE = "Cypress"
 NO_GENERIC_LICENSE[Cypress] = "FOSS_README.txt"

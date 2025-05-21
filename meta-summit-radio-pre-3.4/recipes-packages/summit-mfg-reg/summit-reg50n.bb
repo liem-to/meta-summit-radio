@@ -3,7 +3,7 @@ SUMMARY = "Summit Wi-Fi MSD50 & WB50n Manufacturing tools"
 REG_NAME = "reg50n"
 
 require mfg-reg.inc
-require radio-stack-msd-version.inc
+require radio-stack-version.inc
 
 INSTALL_TOOLS += "${B}/smu_cli" "${B}/tcmd.sh"
 

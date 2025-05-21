@@ -12,4 +12,4 @@ RCONFLICTS:${PN} = " \
         "
 
 require summit-backports.inc
-require radio-stack-lwb-version.inc
+require radio-stack-version.inc

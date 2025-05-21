@@ -10,4 +10,4 @@ LIC_FILES_CHKSUM = "\
     file://NOTICE.qca_firmware;md5=bf9ec5483ed37fb00e52e04831084061 \
     "
 
-require radio-stack-bdsdmac-version.inc
+require radio-stack-version.inc

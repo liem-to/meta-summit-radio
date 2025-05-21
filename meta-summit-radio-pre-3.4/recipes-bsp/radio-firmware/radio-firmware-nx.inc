@@ -1,5 +1,5 @@
 require radio-firmware.inc 
-require radio-stack-nx-version.inc
+require radio-stack-version.inc
 
 LICENSE += "& NXP2"
 NO_GENERIC_LICENSE[NXP2] = "LICENSE.nxp2"

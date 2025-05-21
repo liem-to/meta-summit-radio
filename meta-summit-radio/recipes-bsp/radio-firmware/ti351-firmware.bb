@@ -1,7 +1,7 @@
 SUMMARY = "TI351 Firmware"
 
 require radio-firmware.inc
-require radio-stack-ti-version.inc
+require radio-stack-version.inc
 
 TI351_REGDOMAIN ?= "WW"
 

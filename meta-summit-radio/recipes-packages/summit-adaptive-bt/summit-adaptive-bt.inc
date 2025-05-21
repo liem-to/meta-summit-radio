@@ -1,4 +1,4 @@
-SUMMARY = "Summit Bluetooth 60 Auto World-Wide Mode"
+SUMMARY = "Summit Bluetooth Auto World-Wide Mode for 60 Radio"
 SECTION = "Wireless"
 
 LICENSE = "Ezurio"

@@ -1,7 +1,7 @@
 SUMMARY = "Summit MSD45 Firmware SDIO-UART"
 
 require radio-firmware.inc
-require radio-stack-msd-version.inc
+require radio-stack-version.inc
 
 LICENSE += "& Atheros"
 NO_GENERIC_LICENSE[Atheros] = "LICENSE.atheros"
