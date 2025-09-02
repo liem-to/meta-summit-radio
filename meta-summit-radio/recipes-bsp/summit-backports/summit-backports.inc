@@ -18,7 +18,11 @@ S = "${WORKDIR}/summit-backports-${PV}"
 SUMMIT_URI ?= "${SUMMIT_URI_BASE}"
 SUMMIT_URI:summit-internal = "${SUMMIT_URI_BASE}/backports/laird/${PV}"
 
-SRC_URI += "${SUMMIT_URI}/summit-backports-${PV}.tar.bz2;name=summit-backports"
+SRC_URI += " \
+    ${SUMMIT_URI}/summit-backports-${PV}.tar.bz2;name=summit-backports \
+    file://0001-bdimx8-defconfig-missing-items.patch \
+    file://0002-Fixed-automatic-firmware-selection.patch \
+    "
 
 EXTRA_OEMAKE = "\
     KLIB=${STAGING_KERNEL_DIR} \
